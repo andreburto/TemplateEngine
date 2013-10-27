@@ -16,18 +16,19 @@ namespace TemplateEngine
         {
         }
 
-        public HtmlRender() { }
-
-        public HtmlRender(Hashtable pre_var)
-        {
-        }
-
         // PRIVATE
         private string Lz(string n)
         {
             int i = int.Parse(n);
             if (i < 10) { return "0" + n; }
             return n;
+        }
+
+        // CONSTRUCTOR
+        public HtmlRender() { }
+
+        public HtmlRender(Hashtable pre_var)
+        {
         }
     }
 }
