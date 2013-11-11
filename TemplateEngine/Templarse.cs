@@ -72,7 +72,52 @@ namespace TemplateEngine
         private List<StackItem> ParseTemplate(string html)
         {
             List<StackItem> retval = new List<StackItem>();
-            
+            string temp_str = "";
+            byte temp_type = 0;
+            int strlen = html.Length;
+            int strcnt = 0;
+
+            while (strcnt < strlen)
+            {
+                string temp_chr = html.Substring(strcnt, 1);
+                int do_this = 0;
+
+                // The start of a variable
+                if (temp_chr == "<")
+                {
+                    if (html.Substring(strcnt, 2) == "<%") { do_this = 1; }
+                }
+
+                // The close of a variable
+                if (temp_chr == ">")
+                {
+                    if (html.Substring(strcnt - 1, 2) == "%>") { do_this = 2; }
+                }
+
+                // The real stuff
+                if (do_this == 1)
+                {
+                    retval.Add(new StackItem(temp_str, temp_type));
+                    temp_str = temp_chr;
+                    temp_type = (byte)StackItem.ItemType.COMMAND;
+                }
+                else if (do_this == 2)
+                {
+                    temp_str += temp_chr;
+                    retval.Add(new StackItem(temp_str, temp_type));
+                    temp_str = "";
+                    temp_type = (byte)StackItem.ItemType.HTML;
+                }
+                else
+                {
+                    temp_str += temp_chr;
+                }
+
+                strcnt += 1;
+            }
+
+            retval.Add(new StackItem(temp_str, temp_type));
+
             return retval;
         }
 
