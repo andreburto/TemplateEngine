@@ -8,8 +8,15 @@ namespace TemplateEngine
 {
     class HtmlRender
     {
+        // PRIVATE VARIABLES
+        private Hashtable _variables;
+        private Templarse _templarse;
+
+        // PUBLIC
         public void AddVariable(string key, string val)
         {
+            if (key.Length == 0 || val.Length == 0) { return; }
+
         }
 
         public void RemoveVariable(string key)
