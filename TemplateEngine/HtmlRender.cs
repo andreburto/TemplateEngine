@@ -21,8 +21,7 @@ namespace TemplateEngine
 
         public void RemoveVariable(string key)
         {
-            if (key.Length == 0) { return; }
-            if (_variables.Contains(key) == false) { return; }
+            if (key.Length == 0 || _variables.Contains(key) == false) { return; }
             _variables.Remove(key);
         }
 
@@ -30,14 +29,6 @@ namespace TemplateEngine
         {
             _templarse = new Templarse(template, _variables);
             return _templarse.ExecuteTemplate();
-        }
-
-        // PRIVATE
-        private string Lz(string n)
-        {
-            int i = int.Parse(n);
-            if (i < 10) { return "0" + n; }
-            return n;
         }
 
         // CONSTRUCTOR
