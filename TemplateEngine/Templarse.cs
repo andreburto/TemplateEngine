@@ -23,7 +23,7 @@ namespace TemplateEngine
         }
 
         private Hashtable _commands;
-        public Hashtable Commands
+        public Hashtable CommandsList
         {
             get { return _commands; }
         }
