@@ -34,14 +34,15 @@ namespace TemplateEngine
             string retval = "";
             foreach (StackItem i in _stack)
             {
-                if (i.Type.Equals(StackItem.ItemType.HTML))
+                if (i.Type == (int)StackItem.ItemType.HTML)
                 {
                     retval += i.Item;
                 }
-                else if (i.Type.Equals(StackItem.ItemType.COMMAND))
+                else if (i.Type == (int)StackItem.ItemType.COMMAND)
                 {
                     retval += Commands(i.Item);
                 }
+
             }
             return retval;
         }
@@ -61,7 +62,7 @@ namespace TemplateEngine
                 if (k != cmd) { temp_cmds[k] = _commands[k]; }
             }
 
-            Templarse temp_tp = new Templarse(this.Commands(cmd), temp_cmds);
+            Templarse temp_tp = new Templarse(_commands[cmd].ToString(), temp_cmds);
             temp_cmds = null;
 
             // Return
@@ -73,7 +74,7 @@ namespace TemplateEngine
         {
             List<StackItem> retval = new List<StackItem>();
             string temp_str = "";
-            byte temp_type = 0;
+            int temp_type = 0;
             int strlen = html.Length;
             int strcnt = 0;
 
@@ -103,13 +104,14 @@ namespace TemplateEngine
                 }
                 else if (do_this == 2)
                 {
-                    temp_str += temp_chr;
+                    System.Console.WriteLine(temp_str);
                     retval.Add(new StackItem(temp_str, temp_type));
                     temp_str = "";
                     temp_type = (byte)StackItem.ItemType.HTML;
                 }
                 else
                 {
+                    //System.Console.Write(temp_chr);
                     temp_str += temp_chr;
                 }
 

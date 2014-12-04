@@ -14,8 +14,8 @@ namespace TemplateEngine
             get { return _item; }
         }
 
-        private byte _type;
-        public byte Type
+        private int _type;
+        public int Type
         {
             get { return _type; }
         }
@@ -41,7 +41,7 @@ namespace TemplateEngine
         }
 
         // CONSTRUCTOR
-        public StackItem(string item, byte type)
+        public StackItem(string item, int type)
         {
             // Clean up a command if it is one
             if (type == (byte)ItemType.COMMAND) { _item = cleanCommand(item); }
