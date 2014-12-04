@@ -11,16 +11,20 @@ namespace TemplateEngine
     {
         static void Main(string[] args)
         {
+            // Load template
             string templateFile = Directory.GetCurrentDirectory().ToString() + "\\template.htm";
             string templateHtml = File.ReadAllText(templateFile);
-            Hashtable vars = new Hashtable();
 
+            // Load variables
+            Hashtable vars = new Hashtable();
             vars.Add("title", "TEST");
             vars.Add("body", "HELLO, WORLD!");
+            vars.Add("today", DateTime.Now.ToString("MM/dd/yy H:mm:ss"));
 
+            // Create rendering object
             HtmlRender hr = new HtmlRender(vars);
 
-            Console.Write(templateHtml);
+            // Display results
             Console.Write(hr.Render(templateHtml));
             Console.Read();
         }

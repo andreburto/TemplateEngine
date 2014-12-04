@@ -100,14 +100,12 @@ namespace TemplateEngine
                 }
                 else if (do_this == 2)
                 {
-                    System.Console.WriteLine(temp_str);
                     retval.Add(new StackItem(temp_str, temp_type));
                     temp_str = "";
                     temp_type = (byte)StackItem.ItemType.HTML;
                 }
                 else
                 {
-                    //System.Console.Write(temp_chr);
                     temp_str += temp_chr;
                 }
 
